@@ -2,15 +2,22 @@
 
 import random as rd
 import math as math
+import time as time
 
 
 def main():
-  print("Hello, I do Newtonian Approximation to get you decently close roots")
-  function = new_function()
-  aprox_1 = float(int_input("start"))
-  times = int(int_input("times"))
-  approximation = approximater(function, aprox_1, times)
-  print(f"Your approximation: {approximation}")
+  choice = ""
+  while choice != "q":
+    print("Hello, I do Newtonian Approximation to get you decently close roots")
+    function = new_function()
+    aprox_1 = float(int_input("start"))
+    times = int(int_input("times"))
+    t_1 = time.perf_counter()
+    approximation = approximater(function, aprox_1, times)
+    t_2 = time.perf_counter()
+    average = round((t_2 - t_1)/times, 10)
+    print(f"\nYour approximation: {approximation}\nIt took {average} seconds per each iteration")
+    choice = input("\nHit Enter to continue, q to quit\n")
 
 def new_function():
   tries = 0
