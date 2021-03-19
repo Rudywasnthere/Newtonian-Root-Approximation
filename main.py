@@ -7,8 +7,8 @@ import time as time
 
 def main():
   choice = ""
+  print("Hello, I do Newtonian Approximation to get you decently close roots")
   while choice != "q":
-    print("Hello, I do Newtonian Approximation to get you decently close roots")
     function = new_function()
     aprox_1 = float(int_input("start"))
     times = int(int_input("times"))
@@ -16,8 +16,8 @@ def main():
     approximation = approximater(function, aprox_1, times)
     t_2 = time.perf_counter()
     average = round((t_2 - t_1)/times, 10)
-    print(f"\nYour approximation: {approximation}\nIt took {average} seconds per each iteration")
-    choice = input("\nHit Enter to continue, q to quit\n")
+    print(f"\nYour approximation: {'{0:.40f}'.format(approximation)}\nIt took {average} seconds per each iteration")
+    choice = input("\nHit Enter to continue, q to quit\n____________________________________________________")
 
 def new_function():
   tries = 0
@@ -96,8 +96,9 @@ def approximater(function, start, times):
   f = lambda x: eval(function)
   current = start
   for x in range(0, times):
-    d = float((f(current + 0.001) - f(current))/ (0.001))
+    d = float((f(current + 0.00000000001) - f(current))/ (0.00000000001))
     current = float(current - f(current)/d)
   return current
   
 main()
+
