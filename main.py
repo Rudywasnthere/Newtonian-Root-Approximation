@@ -4,6 +4,7 @@ import random as rd
 import math as math
 import time as time
 
+pi = 3.1415926535897
 
 def main():
   choice = ""
@@ -16,7 +17,9 @@ def main():
     approximation = approximater(function, aprox_1, times)
     t_2 = time.perf_counter()
     average = round((t_2 - t_1)/times, 10)
+    if 
     print(f"\nYour approximation: {'{0:.40f}'.format(approximation)}\nIt took {average} seconds per each iteration")
+    print(round(approximation, 14))
     choice = input("\nHit Enter to continue, q to quit\n____________________________________________________")
 
 def new_function():
@@ -94,7 +97,7 @@ def int_input(case):
 
 def approximater(function, start, times):
   f = lambda x: eval(function)
-  current = start
+  current = float(start)
   for x in range(0, times):
     d = float((f(current + 0.00000000001) - f(current))/ (0.00000000001))
     current = float(current - f(current)/d)
