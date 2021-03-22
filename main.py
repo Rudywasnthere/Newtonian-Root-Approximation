@@ -17,8 +17,11 @@ def main():
     approximation = approximater(function, aprox_1, times)
     t_2 = time.perf_counter()
     average = round((t_2 - t_1)/times, 10)
-    if 
-    print(f"\nYour approximation: {'{0:.40f}'.format(approximation)}\nIt took {average} seconds per each iteration")
+    exp = root_detector(approximation)
+    if exp == 1:
+      print(f"\nYour approximation: {'{0:.40f}'.format(approximation)}\nIt took {average} seconds per each iteration")
+    elif exp > 1:
+      print(f"\nYour approximation: {round((approximation)**exp, 2)}**{exp}\nIt took {average} seconds per each iteration")
     print(round(approximation, 14))
     choice = input("\nHit Enter to continue, q to quit\n____________________________________________________")
 
@@ -102,6 +105,18 @@ def approximater(function, start, times):
     d = float((f(current + 0.00000000001) - f(current))/ (0.00000000001))
     current = float(current - f(current)/d)
   return current
-  
+
+def root_detector(approximation):
+  num_try = 1
+  for x in range(2,11):
+    temp = approximation**x
+    try:
+      temp = int(round(temp,7))
+      num_try = x
+      break
+    except:
+      pass
+  return num_try
+
 main()
 
