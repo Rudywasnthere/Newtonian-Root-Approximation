@@ -4,7 +4,7 @@ import random as rd
 import math as math
 import time as time
 
-pi = 3.1415926535897
+pi = 3.141592653590
 
 def main():
   choice = ""
@@ -18,11 +18,12 @@ def main():
     t_2 = time.perf_counter()
     average = round((t_2 - t_1)/times, 10)
     exp = root_detector(approximation)
-    if exp == 1:
+    if round(approximation, 12) == pi:
+      print(f"Your approximation: pi\nIt took {average} seconds per each iteration")
+    elif exp == 1:
       print(f"\nYour approximation: {'{0:.40f}'.format(approximation)}\nIt took {average} seconds per each iteration")
     elif exp > 1:
-      print(f"\nYour approximation: {round((approximation)**exp, 2)}**{exp}\nIt took {average} seconds per each iteration")
-    print(round(approximation, 14))
+      print(f"\nYour approximation: ({round((approximation)**exp, 2)})^(1/{exp})\nIt took {average} seconds per each iteration")
     choice = input("\nHit Enter to continue, q to quit\n____________________________________________________")
 
 def new_function():
@@ -107,15 +108,14 @@ def approximater(function, start, times):
   return current
 
 def root_detector(approximation):
+  count = 0
   num_try = 1
-  for x in range(2,11):
-    temp = approximation**x
-    try:
-      temp = int(round(temp,7))
+  for x in range(1,21):
+    temp = str(round(approximation**x, 10))
+    if temp[1:9] == ".0" and count == 0:
       num_try = x
-      break
-    except:
-      pass
+      print(temp)
+      count += 1
   return num_try
 
 main()
